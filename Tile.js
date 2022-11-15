@@ -11,7 +11,7 @@ export class Map {
     var start = performance.now();
     this.tree = new wordTree;
 
-    console.log(((performance.now() - start) / 1000) +  "seconds to gen word tree")
+    console.log(((performance.now() - start) / 1000) + "seconds to gen word tree")
 
     this.map = [];
     this.init()
@@ -21,9 +21,9 @@ export class Map {
     // this.printMap() // for debug
   }
 
-  setLetters(a){
-    for (var i = 0; i < 5; i++){
-      for (var j = 0; j < 5; j++){
+  setLetters(a) {
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 5; j++) {
         this.map[i][j].letter = a[i][j];
       }
     }
@@ -79,11 +79,11 @@ export class Map {
       var nY = n[1];
       var nChar = this.map[nX][nY];
       tchain.push(nChar);
-      var currentText = tchain.map(function(a) {return a.letter}).join("")
-      if (this.tree.isValidWord(currentText) && currentText.length > 3){
+      var currentText = tchain.map(function (a) { return a.letter }).join("")
+      if (this.tree.isValidWord(currentText) && currentText.length > 3) {
         this.result.push(currentText);
       }
-      if (this.tree.getPossibleWords(currentText)){
+      if (this.tree.getPossibleWords(currentText)) {
         this.map[x][y].isVisited = true;
         this.solve(nX, nY, [...tchain])
         this.map[x][y].isVisited = false;
